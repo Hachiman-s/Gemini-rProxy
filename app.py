@@ -20,7 +20,6 @@ from urllib.parse import urlparse
 from requests.utils import get_environ_proxies
 from func import authenticate_request, process_messages_for_gemini
 
-
 def get_timezone_by_ip():
     try:
         response = requests.get('http://ip-api.com/json/?fields=timezone', timeout=5)
