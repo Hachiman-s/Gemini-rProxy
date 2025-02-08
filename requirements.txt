@@ -11,3 +11,4 @@ google-cloud-core>=2.4.1
 protobuf>=4.25.2
 pyinstaller
 pyyaml
+pytz

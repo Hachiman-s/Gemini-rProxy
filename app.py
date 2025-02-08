@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 import re
 import logging
 import func
+import pytz
 import yaml
 from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -19,7 +20,20 @@ from urllib.parse import urlparse
 from requests.utils import get_environ_proxies
 from func import authenticate_request, process_messages_for_gemini
 
-os.environ['TZ'] = 'Asia/Shanghai'
+
+def get_timezone_by_ip():
+    try:
+        response = requests.get('http://ip-api.com/json/?fields=timezone', timeout=5)
+        if response.status_code == 200:
+            return response.json().get('timezone', 'UTC')
+    except Exception as e:
+        print(f"获取时区失败: {e}")
+    return 'UTC'
+
+# 动态设置时区
+current_tz = get_timezone_by_ip()
+os.environ['TZ'] = current_tz
+print(f"时区已设置为: {current_tz}")
 
 app = Flask(__name__)
 
