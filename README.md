@@ -78,7 +78,7 @@ python app.py
 
     ```bash
     pip install pyinstaller
-    pyinstaller --onefile --name gemini-proxy --add-data="func.py;." app.py
+    pyinstaller --onefile --name gemini-proxy --add-data="func.py:." app.py
     ```
 
 2.  **运行：**  将`.env` 文件复制到 `dist` 目录下，与 `gemini-proxy.exe` 放在一起，然后双击运行 `gemini-proxy.exe`。
